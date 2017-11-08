@@ -1,0 +1,50 @@
+
+N.B. that manual calculations angles are in degrees whereas the program’s calculated angle is in radians.
+Handouttest programs taken from assignment document.
+
+————————————————————
+
+TITLE OF TEST FILE:					handouttest1.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(0, 0, 45)
+FINAL POSITION FROM handouttest1.txt (X, Y, ANGLE):	(0.000000,-0.000000) 0.785398
+RESULT: 						1
+
+TITLE OF TEST FILE:					handouttest2.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(0, 0, 45)
+FINAL POSITION FROM handouttest2.txt (X, Y, ANGLE):	(0.000000,-0.000000) 0.785398
+RESULT: 						1
+
+TITLE OF TEST FILE:					handouttest3.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-93.8, 110.6, 72.0)
+FINAL POSITION FROM handouttest3.txt (X, Y, ANGLE):	(-93.850452,110.581846) 1.256637
+RESULT: 						1
+
+TITLE OF TEST FILE:					handouttest4.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-64.6, 68.3, 74.9)
+FINAL POSITION FROM handouttest4.txt (X, Y, ANGLE):	(-64.569219,68.301270) 1.308997
+RESULT: 						1
+
+————————————————————
+
+Manual calculations for final turtle position of handouttest1.txt:
+clearly final location is (0,0)
+Final angle is 45 degrees of due north: 45 degrees from the x axis = 0.78 radians
+
+Manual calculations for final turtle position of handouttest2.txt:
+as above
+
+Manual calculations for final turtle position of handouttest3.txt:
+Using a recursive function for FD 1.5 -> 150 in increments of 1.5, turning 62 degrees each time: -93.8, 110.6 with an angle of 72.0 degrees
+
+Manual calculations for final turtle position of handouttest4.txt:
+Can ignore the circles it draws just do the spiral:
+-64.6, 68.3 with angle 74.9 degrees.
+————————————————————
+
+
+Changes made in order to get all things to parse and produce the correct result:
+	- when a Do loop went from numbers x to y where 0 was between x and y, we needed to add a modification to the loop in order to set the zero flag as the variable passes through zero. 

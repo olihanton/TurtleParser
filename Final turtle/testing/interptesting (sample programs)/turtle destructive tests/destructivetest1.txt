@@ -1,0 +1,11 @@
+{
+   DO C FROM 1 TO 3 {
+      DO A FROM 1 TO 7 {
+         DO Z FROM 3 TO 3 {
+            DO N FROM 17 TO -2 {
+               FD N
+            }
+         }
+      }
+   }
+}

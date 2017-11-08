@@ -1,0 +1,156 @@
+—————————————————————————————————————————————
+Turtle parser and interpreter testing report:
+—————————————————————————————————————————————
+
+	Section 1: brief overview of different testing methods
+
+	Section 2: testing strategy - outline basic strategy, evaluate effectiveness
+
+	Section 3: summary of particular functions and programs that were tested and produced errors as well as a couple of examples of ones which were fine
+
+	Conclusion - to testing report: what I would change in the strategy in future etc.
+
+—————————————————————————————————————————————
+SECTION 1:
+
+As a single piece of code out interpreter is only fit for certain types of software test (for instance security and installation testing are both redundant with a code which is not a fully fledged program). I shall briefly go through several of the more relevant ideas in section 1.
+
+Black box testing vs white box testing - black box testing is tests that we run without examining the code we are testing and assess the output, where as with white box testing, the code is more thoroughly examined. This means that white box testing allows us to go more in depth on the various functions and potential errors giving us scope for further techniques such as destructive testing and smoke testing. Not he other hand, by examining the code closely we are likely to follow the same chains of logic when whitebox testing the code as we did when writing it. This means that we are naturally less likely to spot errors in this logic. This is where blackbox testing comes in - in the hopes that it will throw up errors which have not previously been considered as possibilities. 
+
+Smoke testing - is the process of testing minimal inputs in order to see if the code is going to work at all. This could be seen as the type of testing we were using through the process of writing the code. Similarly A/B testing is crucial to our testing process. A/B testing involves running the same code with one output changed. This is hard to show by recording sample programs but is incredibly useful for writing functions and checking each of their outputs compared to those we expect.
+
+Destructive testing will also be key to our testing strategy. Destructive testing is the process of attempting to get the code to fail by stretching its abilities. 
+
+Completeness testing (also known as coverage testing) - this is a testing method which shows the proportion and areas of a code which are used when parsing a particular document or program. There are three specific types which we consider - functional, statement and conditional. Statement is the most detailed and covers the proportions of statements that are used in a code. Without using a cage or framework which analyses the usage automatically, this is very fiddly to implement, as statements have to be adapted in order to send a signal that they have been used. Functional is the highest level where the testing merely checks which functions are being used. Conditional coverage testing deals with if statements, while loops, for loops etc. and is half way house between detail and applicability.  
+
+To summarise there are about half a dozen different testing types which will be extremely applicable to this assignment and we shall attempt to use all those which have been mentioned both within our testing strategy set out at the beginning of the assignment and its evolution as the code develops. 
+
+—————————————————————————————————————————————
+SECTION 2:
+Testing strategy:
+The original testing strategy for this piece of code was to initially write a compile a simplified parser with only FD, LT and RT instructions as suggested in the ‘hints’ section of the assignment. This was built largely untested except for checking for warnings/errors and some outputs. Once the simplified parser was finished it was able to be tested much more thoroughly. From this stage onwards since we were building up the code function by function, I planned to test each function as it was added to the code to check that it had the right outputs. A more comprehensive test took place at the end of the ‘creating an interpreter’ stage. This was to cover oversights and to prevent interrupting the ‘flow’ of writing a code that more thorough continuous testing would have caused. This final testing was intended to include individual function checking and completeness checking of both functions and conditionals (originally I also planned for statements but evaluated that this was not necessary once the other stages of testing had been completed). The function checking was originally intended to take place via destructive testing. I.e. creating programs which would have a hope of breaking the interpreter in some way or another and then seeing if the code could carry them through. Function checking was also supposed to take the functions in a vacuum and test their inputs and outputs. This was possible with the simplest of functions (such as ‘caps’ or ‘push’), but less so with more complicated functions (such as ‘statement’ or ‘code’) which called a majority of the other functions defined in the interpreter. This stage eventually was replaced with a series of analyses on the various implementations of functions to ensure that they produced the desired results. 
+
+Retrospective testing: 
+The final checking stage had a number of phases. Phase 1 was to create destructive (‘black box’) tests, that knowing potential weaknesses of the code we would compile programs that would try and break it. Largely this testing was carried out in three categories relating to the functions trying to be broken: DO, Polish breakages and combinations (see 3.1.3). In phase 1 I also took programs from an unbiased external source - the internet. These sample programs were written prior to this interpreter from knowledge of the formal grammar and how LOGO works (3.1.2 - this is a more extreme example of black box testing). In addition we checked that the SDL output is as expected using the files given in the assignment sheet (3.1.1). Phase 2 is a pair of completeness checks. We check that all the error messages in the function could be called via a different number of programs (3.2.2) and checking that each subsection of every function in the program could be used by some input (3.2.1). This stage has implications for the optimisation of the code as well as hopefully highlighting issues in areas where the functionality of the code doubles up or doesn’t produce the expected outcome. Phase 3 involved individual testing of the functions. This was carried out in a vacuum or as a chunk of the series of functions, of which they were a part.
+
+Testing methodology:
+For phases 1 and 3 I created a ‘printcoord()’function to print out the position of the turtle and its facing after any movement it made across the Cartesian plane. This meant that we didn’t have to try and see if something was correct on the SDL interface, and could evaluate the test’s effectiveness to greater accuracy. For phases one and three the final position of the turtle was manually calculated via any given program and this was then compared to the final printed output of the location of the turtle. In order to be more thorough we could have compared every movement that the turtle took with the outputs from the interpreter. This would have required a much larger number of manual calculations. In addition more manual calculations would have increased the risk of a mistake. We would also have had no recourse for double checking our own calculations if there was a discrepancy so that we could confirm there was an error in the code. On the other hand there is a chance (albeit a very small one) that a mistake in the code could still mean that the turtle would end up in the same place as if the code had no mistake. To reduce this probability, where possible multiple tests were carried out, although usually only one recorded in attached documentation. In addition, in most test programs, increments were chosen to be primes to reduce likelihood of overlap between locations (with fewer factors in common). In the end I evaluated that the benefit of only checking the final (x,y) position and facing angle would allow us to perform a magnitude of tests to counterbalance the positive effects that we would have gained by being more thorough. For phase 1 and 3 more information is stored in ‘destructivetestsummary.txt’ and ‘externaltestsummary.txt’ respectively.
+
+Phase 2 (completeness of errors and functions) was tested in a different manner. Completeness of errors were checked by creating an input program designed output each error that could be called. More information on this process can be seen in the text document: ‘errortestsummary.txt’. If this program failed to produce the same error as predicted or to produce an error at all (shown with a result: 0) then I created other programs to get as close as possible to that error and that is the recorded program. Completeness of functions was tested via interpcompleteness.c which took an array of 85 flags and raised the flags if a particular function or conditional was used for a program. By comparing the flag results of several programs we are in theory able to detect areas of code which are not used to then focus on and spot errors in.
+
+/*
+void printcoord(double prevx, double prevy, Turtleposition *t){
+   printf("From (%f,%f) ", prevx, prevy);
+   printf("to (%f,%f), ", t->current[0], t->current[1]);
+   printf("with a facing of %f radians.\n", t->angle);
+}*/
+- this was called in ‘FD’ (as ‘FD’ is the only instruction which moves the turtle from one location to another).
+
+
+—————————————————————————————————————————————
+SECTION 3:
+Contents of Section 3 - results and analysis of:
+	3.1 Variations on blackbox testing on outputs
+	3.2 Completeness checking - optimisation and efficiency
+	3.3 Specific checking of file lines and program outputs
+	3.4 Additional testing and results of continuous testing while writing
+
+
+3.1.1. taking the files from the assignment hand out. This test will be our primary test of how the code works from translating output coordinates of the turtle’s location to lines in an SDL window.
+See ‘handouttestsummary.txt’ for the numerical significances and values. It is largely pointless to provide direct evidence of the visual comparison between this interpreter’s output and those in the assignment handout, but these were compared by eye to make sure that the shapes that this interpreter was printing out to SDL were to a satisfactory level, which they were. With the exception of testing the SDL functions individually to ascertain their exact role this was the extent to which the SDL code was tested.
+
+3.1.2.
+As an example of black box testing in its most abstract form I wanted to take test data that had been compiled with no knowledge of my specific interpreter and yet still conformed to the set formal grammar and knowledge of how the LOGO language worked. I used two sources for such data. For the first three programs, I was able to find data of this type publicly available on GitHub. Using 3 different programs which were compiled by Kenkam 5 years ago, while doing a similar assignment at UoB, I was able to ‘blackbox’ test the interpreter. N.B. that this is the only information used from KenKam’s project. The files are attributed to him, although they were created to show how areas of his interpreter worked where as I am using them as a blind test of my interpreter and so serve a different use to me just writing my own equivalent files. The final three files I created myself but before writing the interpreter (although after writing the parser). This meant that as I had not written or planned my interpreter at that stage I did not have knowledge of how it worked and so was able to write programs without targeting specific functions.
+
+As we can see in ‘externaltestsummary.txt’, all six of these files parsed successfully and their corresponding interpretations produced the desired output for the position of the turtle. Unfortunately as it was largely undirected testing it did little to show us any bugs in the program. On the other hand it was a purer form of testing than the others which we enacted because the test programs could not be altered in order to search out bugs in the code.
+
+Sources of the sample test files from ‘kenkam’:
+https://github.com/kenkam/turtle/blob/74c9486f1f523cff2bd6ff6471aaec573cfdeba7/data/testdata3.txt
+https://github.com/kenkam/turtle/blob/74c9486f1f523cff2bd6ff6471aaec573cfdeba7/data/testdata2.txt
+https://github.com/kenkam/turtle/blob/74c9486f1f523cff2bd6ff6471aaec573cfdeba7/data/testdata1.txt
+
+3.1.3.
+Destructive testing: ‘destructivetestsummary.txt’ works through an example set of test programs which attempt to stretch the code to breaking point. This stage of testing went through several sets of test programs. I have only included the last iteration, prioritising implementing a range of testing strategies rather than overdocumenting a single one and so increasing the risk of a bug in the interpreter getting through the testing stage of our interpreter creation. The 8 programs included each target one or two areas of the interpreter which I think are weak and might confused the logic to the extent that the correct result is not outputted. This was the area in which I was most rigorous with my manual calculations and by the final iteration of destructive tests, the interpreter seemed to be able to cope with pretty much anything thrown at it.
+
+As a result of these tests a number of changes were made to our end code:
+	- when a ‘DO loop’ went from numbers x to y where 0 was between x and y, we needed to add a modification to the variablezeroflag for that point. 
+	- the checkpolish function gave an error warning when only two variables and a single operation were input - this was fixed by rearranging the order of functions called in checkpolish
+	- in ‘statement()’, ERROR("Expecting an FD, LT, RT, DO, SET or '}' instruction") kept getting randomly called - restructured error messages because of this, and this problem receded.
+
+After making the above alterations I created further files to check the interpreter including the above problems. These are the files in ‘destructivetestsummary.txt’, which now parse correctly.
+
+3.2.1 This part of the testing strategy I outline originally as “creating a program (automated within turtleinterpreter.c) that makes sure that all lines of the code are used/can be used with a specific program”. The program which was created is called “interpcompleteness.c” and should be saved in this directory. A thorough analysis of this is included in the completenesstestsummary.txt. to summarise however, this testing brought up a small issue with an if statement nested within a contradictory if statement rendering the original pointless and non useful. Having rapidly rectified this, this testing strategy then allayed worries about the code not being rigourous. 
+
+
+3.2.2 Also that all 21 error messages can be thrown up if relevant with 21 different precompiled programs - I.e. no clashing for the error messages - optimisation of code. For instance check file length/checkstringlength never came up because there was always another error which was called before it. 
+Create subdirectories of input codes which produce these outputs. There is no need to form a frame for the code for these since only one error can be shown at a time so we will manually input them.
+To see this please look at errortestsummary.txt for further information. 
+
+Non-successful results: 
+	1) unnecessary ERROR: input file is empty: (errortest1.txt)
+	2) error produced inaccurate token results: (errortest4.txt)
+	3) error produced inaccurate token results: (errortest13.txt)
+	4) Abort trap called before ‘ERROR: stack is full’: (errortest17.txt)
+	5) error produced inaccurate token results: (errortest18.txt)
+	6) error produced inaccurate token results: (errortest19.txt)
+	7) No error at all produced where we should have ERRORTOKEN("Exceeding maximum token length", cw): (errortest21.txt)
+
+Solutions to Errortesting outputs:
+1) In this case, through further testing we can hypothesise that the intersect between two the sets A and B is equal to the set A, where the set A is codes affected by the ‘ERROR: input file is empty’ and set B is the set of codes effected by the ‘Error: No opening '{'? occured’. As such all errors from set A are covered by set B and so error message A is unneeded and so was removed.
+2) we improve this error message so that it refers to the correct token
+3) we improve this error message so that it refers to the correct token
+4) At first I tried to get this error message to overrule the abort trap but the abort trap happens at the memory allocation stage of the compilation and so will always be produced as an error first. However since the abort trap also doesn’t let the program compile, we can accept this instead of the error message we originally intended and merely remove the offending error message.
+5) we improve this error message so that it refers to the correct token
+6) we improve this error message so that it refers to the correct token
+7) Here no error is produced. Instead the the first n characters of the input string are taken as our token where n=MAXTOKENLENGTH. This is clearly a problem. It was fixed by adapting the function checkstrlength (later removed) and calling it in function numorcaps instead of main.
+
+N.B.: spelling of ‘occurred’ also fixed!
+
+3.3.1
+Whitebox testing - individual testing of functions (and the sub functions that they call…)
+As a General strategy for covering all polish inputs such as ‘.’ and ‘.4’ and ‘.-‘ etc. I input variations to the interpreter on destructivetest.txt (an example of how the test programs which are saved in this directory are merely examples of all the programs which were used to test the code and how saving all of them would have been unfeasible). This particular set of variations made sure that all (2*2*2*2^4*2=256) combinations of large\small integers, negative numbers, large/small decimals, on both sides of all operations all operations and zeros were all tested. 
+
+An example of an error which was thrown up through white box testing on linux machines as opposed to the macOS on which this interpreter was written is: Previously extraintegercond() had surplus bits and also was using round which isn’t available on the linux system in c99: 
+
+“void extraintegercond(Program *p, char str[]){
+   double num=0;
+   sscanf(str, "%lf", &num);
+   if(str[0]>='A'&&str[0]<='Z'&&str[1]=='\0'){
+      num=retrieve(p, (double)str[0]);
+   }
+   if(!dblsame(round(num)-num, 0)){
+      ERRORTOKEN("retrieved value in a 'DO' loop is not an integer but needs to be", p->cw+1);
+   }
+}”
+
+This required an adaption of the functions which worked on a more careful approach analysing the input strings digit by digit.
+
+
+Some specific errors that were found and addressed (rather than systematically going through all of them which would be unfeasible):
+	- problems with ‘doloopflag’ which required tinkering and being +1 or -1 out all the way through but finally got a version which works through out code for nested ‘DO loops’ 
+	- polishcalc() - requires rigorous check polish. It will not accept 3 + 4 for instance because of the way in which the stack method is set up. Nothing that can be done about this without restructuring the whole function but there isn’t a clear other way to structure it
+
+3.4.1. The results of continuous testing of outputs throughout the process of writing the code (N.B. the code which caused these will, by and large have been removed or adapted. This is just a record of some of the more distinctive errors that I come across):
+	- error with check polish: dividing by zero
+	- early on: numorcaps’s specifications etc.
+	- error with retrieve: trying to get the numerical value of a variable (operation and negative numbers clashed and produced an undefined result)
+	dblsame necessity since ‘==‘ two doubles together produces an unsafe warning.
+	
+
+
+3.4.2 Another test that I subjected my interpreter to was to change the #define values (within reason) to check that the code still compiled. As this would require saving many multiples of the whole ‘.c’ file to fully document I will merely summarise that for all ‘#define’s at the beginning of the code changes in the values behaved as expected and threw up no errors. All were tested with large and small integers. Generally changing the values from integers to doubles created problems with the code since they are often used to denote lengths of loops (which must be integers) or in other situations where integers are required.
+
+—————————————————————————————————————————————
+Conclusion:
+
+If I were to repeat building and testing this code I would make two major changes. The first would be to embed completeness checking from the start and then remove it from the final product rather than retrospectively fitting it onto a code as this was a lot of unnecessary hassle. The second change would be to massively increase the amount of automated testing that I did, both as I went through the code and once it was completed. This would largely have involved creating makefiles to compile the code with a number of different programs simultaneously which would then write the results into ‘.txt’ files. The pay off here is that on the one hand we would have a far wider range of tests it would also be clunkier to go through the results and isolate those which we regarded as important. Although more automation is not necessary for a satisfactory result from the various implemented testing strategies, it could have saved a lot of time and improved accuracy of the testing. On the other hand a lot of the test result relied on manually doing calculations to compare them with those of the code and so a lot was not automatable.
+
+An example of possible automation is in the completeness testing, where we could have automated the outputs of the completeness tests in order to sieve and then show us which flags had not been raised for a set of input programs. As it turned out for this interpreter, creating a completeness test and sieving the program outputs by hand was not a horrific amount of work but would definitely have been necessary rather than preferable if the code was much longer. Self testing code and regression testing are both areas of testing I would have like to invest more time into if it had been possible.
+
+In addition, most errors were avoided through careful evaluation and the writing stage. Continuous testing takes away from the amount of time one can focus on eliminating these errors while writing (if you have to focus on continuous testing then you are dedicating less time to planning which is likely to cause more errors in the long term). This is something I definitely felt strongly throughout this assignment I hadn’t felt before because of not having the need to do continuous testing.
+
+Sources: 
+http://check.sourceforge.net/doc/check_html/check_2.html#SEC3
+https://libcheck.github.io/check/
+http://stackoverflow.com/questions/65820/unit-testing-c-code
+http://cunit.sourceforge.net

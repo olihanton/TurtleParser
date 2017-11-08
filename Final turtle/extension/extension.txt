@@ -1,0 +1,27 @@
+
+EXTENSION EXPLAINATION:
+
+My extension consists of a number of additions to the formal grammar. The changes to the formal grammar can be seen in ‘turtlenewformalgrammar.txt’. Also see ‘turtlenewexplained.txt’ for explainations suitable for a user of this language as to what an input program would do. The following document explains my work flow and various subtleties in designing such extensions. 
+
+<TURTLE> - Either “TURTLE ON” or ”TURTLE OFF”. The idea behind this instruction is to aid the visualisation of the drawing tool for a user of the trimmed LOGO language that we are implementing. Currently our program will show a line if a ‘FD n’ instruction is implemented for n a number not equal to 0. Nothing is shown if a LT or RT instruction is interpreted until the next FD instruction. So if TURTLE is switched on then  it produces a symbol to signify the facing. Rather than have an actual picture of a turtle I opted initially for a red iscoceles triangle (as the simplest 2D geometric shape with an intuitively defined ‘direction’). 
+
+At first I just hard wired this to check the trigonometry for drawing a rotating triangle based on the angle stored in the structure ‘Turtle position’. This meant that everytime FD, LT or RT was interpreted, a new turtle was drawn on the screen and left there until the end resulting in a very messy result.
+
+The next step was to delete the turtle we had drawn as soon as the next instruction was interpreted so that it would more intuitively represent the location of the user (multiple turtles would be confusing). The first method I tried to do was imminently before a second instruction was processed, to draw an identical triangle to the first in the same location but with the background colour. This works to a certain extent. However if the triangle overlaps a previously drawn line then when the triangle is ‘deleted’ it creates a ‘background coloured’ hole in that original line.
+
+To improve this we need to access the levels of buffering and double buffering that SDL uses. Basic SDL uses a single buffer for the screen that it is going to print out. This means it processes the SDL_instructions before displaying them to the user. By double buffering (standard in SDL 2.0 and so needing to be accessed via SDL_RenderPresent) we are able to store a shot of the screen before and after the triangle is drawn and then replace the screen with the first one.******rephrase*********
+ I attempted this using RenderCopy and RenderClear and RenderPresent
+
+
+
+
+
+
+
+
+
+
+
+
+A source of some of the ideas used in this extension:
+http://pylogo.sourceforge.net/PyLogo.html

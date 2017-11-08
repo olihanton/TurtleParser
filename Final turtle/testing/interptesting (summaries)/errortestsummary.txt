@@ -1,0 +1,143 @@
+This file is a log of which error message each errortestn.c file should correspond to (for n from 1 to 21). Where not directly related to producing the corresponding error message, each file should parse correctly. We have taken each of the Error’s sequentially throughout the whole program and tried to create a relevant program to trigger that error. Keeping in mind that the first mistake and only the first will produce an error output. If it returns an error message which is not expected/the expected error message can not be made to appear then the expected error message is redundant and requires further testing/adjustments. This is represented by a ‘RESULT: 0’.
+We shall also check that the returned error token (where applicable) refers to the correct token.
+
+TITLE OF ERRORTESTFILE: 	N.A. (no input program)
+TARGETED ERROR MESSAGE: 	Cannot open file
+RETURNED ERROR MESSAGE: 	Cannot open file
+RESULT: 			1
+ERROR TOKEN CORRECT?:		N.A.
+
+TITLE OF ERRORTESTFILE: 	N.A. (any two input programs)
+TARGETED ERROR MESSAGE: 	ERROR: Wrong number of file inputs
+RETURNED ERROR MESSAGE: 	ERROR: Wrong number of file inputs
+RESULT: 			1
+ERROR TOKEN CORRECT?:		N.A.
+
+TITLE OF ERRORTESTFILE: 	errortest1.txt
+TARGETED ERROR MESSAGE: 	ERROR: input file is empty
+RETURNED ERROR MESSAGE: 	Fatal Error: No opening '{'? occured in turtleinterpreter.c, line 146
+RESULT: 			0
+ERROR TOKEN CORRECT?:		N.A.
+FIX: 				Alternative error message is pre-empting this one rendering it null.
+
+TITLE OF ERRORTESTFILE: 	errortest2.txt
+TARGETED ERROR MESSAGE: 	ERROR("No opening '{'?")
+RETURNED ERROR MESSAGE: 	Fatal Error: No opening '{'? occured in turtleinterpreter.c, line 146
+RESULT: 			1
+ERROR TOKEN CORRECT?:		N.A.
+
+TITLE OF ERRORTESTFILE: 	errortest3.txt
+TARGETED ERROR MESSAGE:		ERROR("Expecting an FD, LT, RT, DO, SET or '}' instruction")
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting an FD, LT, RT, DO, SET or '}' instruction occured in turtleinterpreter.c, line 229
+RESULT: 			1
+ERROR TOKEN CORRECT?:		N.A.
+
+TITLE OF ERRORTESTFILE: 	errortest4.txt
+TARGETED ERROR MESSAGE: 	ERRORTOKEN("Variable that was used has not previously been assigned", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Variable that was used has not previously been assigned occured for input token number 2 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		0
+FIX: 				Need to take about the variable following token number X not actual token number X.
+
+TITLE OF ERRORTESTFILE: 	errortest5.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("a number or letter variable", "'FD'", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a number or letter variable following 'FD' for input token number 3 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest6.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("a number or letter variable", "turn instruction", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a number or letter variable following turn instruction for input token number 3 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest7.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("a capital letter variable", "'DO'", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a capital letter variable following 'DO' for input token number 3 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest8.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("'FROM'", "the preceding variable", p->cw
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting 'FROM' following the preceding variable for input token number 4 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest9.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("a number or letter variable", "'FROM'", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a number or letter variable following 'FROM' for input token number 5 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest10.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("'TO'", "the preceding variable", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting 'TO' following the preceding variable for input token number 6 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest11.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("a number or letter variable", "'TO'", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a number or letter variable following 'TO' for input token number 7 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest12.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("'{'", "the preceding variable", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting '{' following the preceding variable for input token number 8 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest13.txt
+TARGETED ERROR MESSAGE: 	ERRORTOKEN("retrieved value in a ‘DO’ loop is not an integer but needs to be", p->cw) 
+RETURNED ERROR MESSAGE: 	Fatal Error: retrieved value in a 'DO' loop is not an integer but needs to be occured for input token number 6 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		0
+FIX: need to make token reference refer to following token…
+
+TITLE OF ERRORTESTFILE: 	errortest14.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("a capital letter variable", "'SET'", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a capital letter variable following 'SET' for input token number 3 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest15.txt
+TARGETED ERROR MESSAGE: 	ERRORNEXT("':='", "the preceding variable", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting ':=' following the preceding variable for input token number 4 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		1
+
+TITLE OF ERRORTESTFILE: 	errortest16.txt
+TARGETED ERROR MESSAGE: 	ERROR("Need fewer operands in polish expression. Current expression has no unique output.")
+RETURNED ERROR MESSAGE: 	Fatal Error: Need fewer operands in polish expression. Current expression has no unique output. occured in turtleinterpreter.c, line 458
+RESULT: 			N.A.
+
+TITLE OF ERRORTESTFILE: 	errortest17.txt
+TARGETED ERROR MESSAGE: 	ERRORTOKEN("Stack is full - please try a smaller polish notation", p->cw)
+RETURNED ERROR MESSAGE: 	Assertion failed: (i<MAXNUMTOKENS), function main, file turtleinterpreter.c, line 98.
+Abort trap: 6
+RESULT: 			0
+
+TITLE OF ERRORTESTFILE: 	errortest18.txt
+TARGETED ERROR MESSAGE: 	ERRORTOKEN("Expecting a Polish expression (operation, variable or ';')", p->cw)
+RETURNED ERROR MESSAGE: 	Fatal Error: Expecting a Polish expression (operation, variable or ';') occured for input token number 9 of your program.
+RESULT: 			1
+ERROR TOKEN CORRECT?:		0
+
+TITLE OF ERRORTESTFILE: 	errortest19.txt
+TARGETED ERROR MESSAGE: 	ERROR("Need fewer operations in polish expression. Current expression has no unique output.")
+RETURNED ERROR MESSAGE: 	Fatal Error: Need fewer operations in polish expression. Current expression has no unique output. occured in turtleinterpreter.c, line 509
+RESULT:				1
+ERROR TOKEN CORRECT?:		0
+ 
+TITLE OF ERRORTESTFILE: 	errortest20.txt
+TARGETED ERROR MESSAGE: 	ERROR("Attempted division by 0 within polish!")
+RETURNED ERROR MESSAGE: 	Fatal Error: Attempted division by 0 within polish! occured in turtleinterpreter.c, line 524
+RESULT: 			1
+ERROR TOKEN CORRECT?:		N.A.
+
+TITLE OF ERRORTESTFILE: 	errortest21.txt
+TARGETED ERROR MESSAGE: 	ERRORTOKEN("Exceeding maximum token length", cw)
+RETURNED ERROR MESSAGE: 	N.A. - no error message
+RESULT: 			0
+ERROR TOKEN CORRECT?:		N.A.
+FIX: adapt function ‘checkstringlength’

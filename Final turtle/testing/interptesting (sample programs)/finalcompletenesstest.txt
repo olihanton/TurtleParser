@@ -1,0 +1,9 @@
+{
+DO A FROM 0 TO 0 {
+   FD 12
+   RT 3
+}
+SET A := 0 ;
+SET B := 0 4 * ;
+
+}

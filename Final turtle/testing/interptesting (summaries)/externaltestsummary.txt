@@ -1,0 +1,70 @@
+
+N.B. that manual calculations angles are in degrees whereas the program’s calculated angle is in radians.
+First three external test programs not written by me, but downloaded from GitHub. The last three were written prior to writing the interpreter so as to be truly blackbox.
+
+TITLE OF TEST FILE:					externaltest1.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-93.8, 110.6, 72.0)
+FINAL POSITION FROM externaltest1.txt (X, Y, ANGLE):    (-93.850452,110.581846) 1.256637 
+SOURCE: 						Kenkam
+RESULT: 						1
+
+TITLE OF TEST FILE:					externaltest2.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-64.6, 68.3, 74.9)
+FINAL POSITION FROM externaltest2.txt (X, Y, ANGLE):	(-64.569219,68.301270) 1.308997
+SOURCE: 						Kenkam
+RESULT: 						1
+
+TITLE OF TEST FILE:					externaltest3.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(112.3, 71.3, 84.8)
+FINAL POSITION FROM externaltest3.txt (X, Y, ANGLE):	(112.347131,71.358512) 1.483530
+SOURCE: 						Kenkam
+RESULT: 						1
+
+TITLE OF TEST FILE:					externaltest4.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-50.7, -2.9, 106)
+FINAL POSITION FROM externaltest4.txt (X, Y, ANGLE):	(-50.722314,-2.891528) 1.850049
+SOURCE: 						made up prior to writing ‘.c’ file
+RESULT: 						1
+
+TITLE OF TEST FILE:					externaltest5.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-2152.7, -1432.2, -109) 
+FINAL POSITION FROM externaltest5.txt (X, Y, ANGLE):	(-2152.686823,-1432.157311) -1.919862
+SOURCE: 						made up prior to writing ‘.c’ file
+RESULT: 						1
+
+TITLE OF TEST FILE:					externaltest6.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-25, 15,8, -35.0)
+FINAL POSITION FROM externaltest6.txt (X, Y, ANGLE):	(-25.051714,15.772146) -0.610865
+SOURCE: 						made up prior to writing ‘.c’ file
+RESULT: 						1
+
+
+Manual calculations for final turtle position of externaltest1.txt:
+Using a recursive function for FD 1.5 -> 150 in increments of 1.5, turning 62 degrees each time: -93.8, 110.6 with an angle of 72.0 degrees - see handouttest3
+
+Manual calculations for final turtle position of externaltest2.txt:
+Can ignore the circles it draws just do the spiral:
+-64.6, 68.3 with angle 74.9 degrees. - see handouttest4
+
+Manual calculations for final turtle position of externaltest3.txt:
+Gives location of 112.3, 71.3 and an angle of 84.8 degrees
+
+Manual calculations for final turtle position of externaltest4.txt:
+In the range of -50 and -1 with a facing of 106 degrees (quick calculation)
+Actually: (-50.7, -2.9, 106) - significantly close.
+
+Manual calculations for final turtle position of externaltest5.txt:
+Much easier to calculate:
+-2152.7, -1432.2, at -109 degrees
+
+Manual calculations for final turtle position of externaltest6.txt:
+-25, 15.78, at -35 degrees
+
+Changes made specifically as a result of running these tests:
+N.A.

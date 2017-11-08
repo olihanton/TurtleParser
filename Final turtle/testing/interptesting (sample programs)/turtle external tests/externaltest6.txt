@@ -1,0 +1,9 @@
+{
+   SET A := 3 4 / ;
+   FD A
+   SET B := A 20 * ;
+   DO A FROM B TO -2 {
+   FD A 
+   LT 35
+}
+}

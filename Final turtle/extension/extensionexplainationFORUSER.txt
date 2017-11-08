@@ -1,0 +1,17 @@
+————————————————————————————————————————————————————
+Extension to the logo language (to be read by user):
+————————————————————————————————————————————————————
+
+“TURTLE ON” or “TURTLE OFF”. Imagine the output window as a plane of existence and FD/LT/RT as directions for the user’s movement on said plane, with the user starting in the centre facing upwards. These two instruction pairings toggle a visual interpretation of the position of the user on the plane as a Red isosceles triangle pointing in the direction the user is pointing. It serves the benefit of allowing us to see the user’s facing.
+
+“NODRAW ON” or “NODRAW OFF” give us the ability to move the user’s location on the plane without drawing a line if no draw is toggled. This allows a greater range of shapes and patterns to be drawn by a user. It conforms to the simple nature of the original formal grammar making it another instruction accessible to a child or first time user.
+
+
+
+<TURTLE> ::= “TURTLE” <TOGGLE>
+<NODRAW> ::= “NODRAW” <TOGGLE>
+<TOGGLE> ::= “ON” | “OFF”
+<COLOUR> ::= “COLOUR” colour
+<SPEED> ::= “SPEED” <VARNUM>
+/*set from 1 to 10 and direct calculation to ‘arbdelay’*/
+<SMOOTH> ::= “SMOOTH” <TOGGLE>

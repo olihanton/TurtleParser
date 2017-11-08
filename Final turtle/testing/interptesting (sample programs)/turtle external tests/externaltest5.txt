@@ -1,0 +1,10 @@
+{
+   SET A := 3 4 / ;
+   FD A
+   DO G FROM 81 TO 73 {
+   SET H := G 14 * ;
+   FD H
+   SET P := H 4 * ;
+   LT P
+}
+}

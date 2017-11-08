@@ -1,0 +1,10 @@
+<COLOUR>
+
+
+<SMOOTH>
+
+
+Source of smooth spline theory:
+http://cdlab.berkeley.edu/Memos/CG/Pixar/spline77.pdf. ?????*****************
+https://en.wikipedia.org/wiki/Cubic_Hermite_spline
+https://people.cs.clemson.edu/~dhouse/courses/405/notes/splines.pdf

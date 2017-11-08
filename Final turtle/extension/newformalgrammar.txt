@@ -1,0 +1,24 @@
+————————————————————————
+Original Formal grammar:
+————————————————————————
+
+<MAIN> ::= "{" <INSTRCTLST><INSTRCTLST> ::= <INSTRUCTION><INSTRCTLST> |"}"<INSTRUCTION> ::= <FD> | <LT> | <RT> | <DO> | <SET> 
+<FD> ::= "FD" <VARNUM><LT> ::= "LT" <VARNUM><RT> ::= "RT" <VARNUM><DO> ::= "DO" <VAR> "FROM" <VARNUM> "TO" <VARNUM> "{" <INSTRCTLST> 
+<VAR> ::= [A-Z]<VARNUM> ::= number | <VAR><SET> ::= "SET" <VAR> ":=" <POLISH><POLISH> ::= <OP> <POLISH> | <VARNUM> <POLISH> | ";" 
+<OP> ::= "+" | " " | "*" | "/"
+
+———————————————————————————————————————
+Extension (additions to formal grammar):
+———————————————————————————————————————
+(new instructions:)
+
+<TURTLE> ::= “TURTLE” <TOGGLE>
+<NODRAW> ::= “NODRAW” <TOGGLE>
+<TOGGLE> ::= “ON” | “OFF”
+<COLOUR> ::= “COLOUR” colour
+<SPEED> ::= “SPEED” <VARNUM>
+<SMOOTH> ::= “SMOOTH” <TOGGLE>
+
+(Replaced instructions:)
+
+<INSTRUCTION> ::= <FD> | <LT> | <RT> | <DO> | <SET> | <TURTLE> | <NODRAW> | <COLOUR> | <SPEED> | <SMOOTH>

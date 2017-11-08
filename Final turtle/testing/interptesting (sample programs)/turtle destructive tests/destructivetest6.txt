@@ -1,0 +1,9 @@
+{
+   SET Z := 3 4 - ;
+   FD Z
+   DO G FROM Z TO 1000 {
+   FD 1
+   LT 11
+}
+   
+}

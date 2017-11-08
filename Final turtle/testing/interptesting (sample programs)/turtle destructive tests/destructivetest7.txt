@@ -1,0 +1,12 @@
+{
+   SET A := 1000 ; 
+   FD 1
+   RT 1
+   LT 3
+   FD -3
+   LT -3.415
+   SET C := A 1 + ;
+   DO B FROM A TO C {
+      FD B
+}
+}

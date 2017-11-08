@@ -1,0 +1,14 @@
+{
+   SET A := 4 4 / ; 
+   DO C FROM 4 TO A {
+      DO A FROM -17 TO 2 {
+         FD A
+      }
+      DO B FROM 1 TO 2 {
+         DO B FROM A TO 200 {
+            LT C
+            FD 3
+         }
+      }
+   }
+}

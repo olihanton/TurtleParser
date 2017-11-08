@@ -1,0 +1,3 @@
+{
+   DO A FROM 3 TO 5 DO
+}

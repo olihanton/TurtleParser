@@ -1,0 +1,93 @@
+
+N.B. that manual calculations angles are in degrees whereas the program’s calculated angle is in radians.
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest1.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(0, 3150, 90)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):  (0.000000,3150.000000) 1.570796 
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest2.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE):	(-144, 140, -156)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(-144.172178,140.038329) -2.722714 
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest3.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE): 	(-74.6, -42.6, 109)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(-74.608279,-42.640762) 1.919862
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest4.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE): 	(0, -6627.8, 90)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(-0.000000,-6627.849592) 1.570796
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest5.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE): 	doesnt move
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(0.000000,0.000000) 1.570796
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest6.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE): 	(-9.4, -3.6, -59)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(-9.386191,-3.603021) -1.029744
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest7.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE): 	(50, 1998, 88.6)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(49.517189,1998.391641) 1.546100
+RESULT: 						1
+
+TITLE OF DESTRUCTIVETESTFILE:				destructivetest8.txt
+DOES IT PARSE AND PRODUCE AN INTERPRETATION?:		1
+MANUALLY PREDICTED FINAL POSITION (X, Y, ANGLE): 	(0, -0.1, 90)
+FINAL POSITION FROM DESTRUCTIVETESTFILE (X, Y, ANGLE):	(-0.000000,-0.100000) 1.570796
+RESULT: 						1
+
+————————————
+
+
+Manual calculations for final turtle position of destructivetest1.txt:
+No turning, so y coordinate=0, angle=90, x coordinate:
+21*(distance_’DO N…’_loop_moves_turtle)
+=21*(17+16+15+14+…+0+-1+-2)
+=21*150
+=3150
+
+Manual calculations for final turtle position of destructivetest2.txt:
+We are do FD 3 twice then LT1, FD3 2-200 times twice
+Then do FD 3 twice, then LT2, FD3 2-200 times twice
+So for an initial a=90, x=6+for(i from 2 to 200)cos(a-i)*3+for(i from 2 to 200)cos(a-i)*3+cos(a-i)*6+x=6+for(i from 2 to 200)cos(a-2i)*3+for(i from 2 to 200)cos(a-2i)*3
+x=-144
+y=140
+angle=-156 degrees
+
+Manual calculations for final turtle position of destructivetest3.txt:
+C: 4,3,2,1
+FD -17, -16, -15, … , 1, 2=FD-150
+So we have FD 150, LT4 FD3 398 times, FD 150, LT3 FD3 398 times, FD 150, LT2 FD3 398 times, FD 150, LT1 FD3 398 times, 
+x=-74.6
+y=-42.6
+angle=109 degrees
+
+Manual calculations for final turtle position of destructivetest4.txt:
+No turning, so y coordinate=0, angle=90, x coordinate:
+((((((0.01/-12.243)+13253)*(-2))-5)/4)+(-0/1))=-6627.8
+
+Manual calculations for final turtle position of destructivetest5.txt:
+No calculation needed - see txt file
+
+Manual calculations for final turtle position of destructivetest6.txt:
+FD 1, then FD1 and LT 11,  999 times creating a constantly overlapping circle
+Gives: (-9.4, -3.6, -59)
+
+Manual calculations for final turtle position of destructivetest7.txt:
+Simple because do loop only involved a FD. (50, 1998, 88.6)
+
+Manual calculations for final turtle position of destructivetest8.txt:
+No calculation needed - see txt file

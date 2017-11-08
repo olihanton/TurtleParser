@@ -1,0 +1,59 @@
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+Completeness test summary: an analysis of the results from applying interpcompleteness.c to sample programs.
+————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+The second half of the completeness testing is to check that every function and conditional within each function is able to be used by a grammatically correct program with a defined outcome (i.e. obeying more than just the formal grammar).
+
+The intention of this test is to both make sure that every conditional part of the interpreter is being used and used in the correct way - with the idea that if the interpreter is not optimised/sufficiently efficient then parts of it will be inaccessible. This method is part of our ‘white box’ analysis of the code and hopes to further ensure that all parts of the code are working as desired. 
+
+Depending on our source, there are three types of completeness checking: 
+	- functional coverage: a flag is thrown up every time a function is used for a particular set of inputs
+	- statement coverage: a flag is thrown up for every statement for a particular set of inputs
+	- conditional coverage: a flag is thrown up for every conditional for a particular set of inputs
+In this test we shall carry out conditional coverage and functional coverage with a number of independently generated sample programs (and then specifically targeted programs if there are flags left which have not been thrown up).
+
+
+The process to carry out the completeness test was to create a .c code based in the final interpreter (at time of testing). This file is called ‘interpcompleteness.c’. This code started by having all the SQL functions stripped out and commented away so that they were no longer active, since we are testing the SQL separately. The actual SQL functions were left in the code (but made inactive) so that it would be easier to reference locations between the interpreter and the completeness test. 
+
+An array of flags was created inside the structure ‘Program’. This array was initialised with each value equal to zero. There are 85 flags in total. As we have checked the error messages elsewhere there was no need to put conditional flags within the parts of the program that would throw up error messages. A statement to change a flag’s value from 0 to 1 was imbedded inside every function and separately inside every conditional (with arbitrary sequential numbers determined by their position in the program - a violation of house rules, but acceptable as this code is not a final submission).
+
+The next step was to create a series of print statements which would run after all the flag statements had had a chance to change the types of the flags. In future if I were to run a completeness test on a program I would attempt an automation of this step as it required more manual analysis than was strictly necessary. Please see the conclusion section of ‘testing.txt’ for more evaluation on this approach. In this case however these printed out arrays of boolean outputs (0 or 1) were compared manually against each other in order to locate the flags which had not been thrown up. 
+
+The programs which the completeness test was run on were initially those in the folder ‘inter-testing sample programs’, in sub directories ‘destructive tests’, ‘external tests’ and ‘handout tests’, as programs which we have determined are legitimate within the defined LOGO specifications. Once these had all been run (see below for more detail) we were left with 11 flags which hadn’t been thrown up. I then created a final sample program which attempted to change these flags.
+
+The result of this test (run on handouttest1.txt, handouttest2.txt, handouttest3.txt, handouttest4.txt, externaltest1.txt, externaltest2.txt, externaltest3.txt, destructivetest1.txt, destructivetest2.txt, destructivetest3.txt, destructivetest4.txt respectively - with regards to the rows of results): 
+
+{0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,0,1,1,1,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0}
+{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,0,0,0,1,1,0,1,1,1,0,1,1,0,1,1,0,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,1,1,1,1,0,1,0,1,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,0,1,0,0,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1}
+
+{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,1,0,1,1,1,1,1,0,1,0,1,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,0,1,0,0,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,1,1,0,0,0,1,1,1,1,1,0,1,0,0,0,1,1}
+
+{0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,1,1,1,0,0,1,1,0,1,1,1,1,0,1,1,1,0,1,1,0,1,1,1,1,0,1,0,1,1,0,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,1,0,0,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,0,0,1,1,1,0,1,1,1,1,0,1,1,0,1,1,1,0,0,0,1,1,1,1,1,1,0,1,0,0,0,1,1}
+{0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,1,0,1,1,0,0,1,0,1,1,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1}
+
+Going through the columns of the above arrays to sieve out the flags which have not been raised via any of the tested programs, we see that flags haven’t been thrown up on comp flags 1, 2, 3, 44, 52, 53, 57, 65, 78, 80, 82. The second step in our completeness testing strategy is to return to the interpcompleteness.c attempt to create programs which throw up those flags. 
+
+Immediately looking at “p->compflag[0]=1;”, ”p->compflag[0]=1;” and “p->compflag[0]=1;” it is clear that our problem arises from these three flags being thrown up to 1 but then being reset to 0 later on in Initprog(). To adapt this we can change the for loop on line 144 too go from i=3 rather than i=0. This is an error in the completeness checking method and so has no impact on our actual code.
+
+“p->compflag[44]=1;” relates to a variable in a ‘DO loop’ being set to 0 and so throwing up the respective zero flag in Program p.
+“p->compflag[52]=1;” and “p->compflag[53]=1;” refer to the extra integer condition on ‘DO loops’. These flags are actually mistakenly put in as the would only be thrown up in the event of an error and so we shall disregard their existence.
+“p->compflag[57]=1;” is thrown up in the case of a variable being set to be equal to 0.
+“p->compflag[65]=1;” is also a flag put mistakenly on an error producing conditional which is checked in the other half of the completeness checking and so shall be disregarded.
+“p->compflag[78]=1;” is throw up in the case of a minus number being put into any <VARNUM> part of our program. This should be relatively easy to check. It refers to a decimal point starting a number to throw up a flag preventing further decimal points being thrown up. This is negated by resting in an ‘if’ conditional just above it which prevents this from ever being called. This is a mistake in the interpreter which we can fix in the original file.
+“p->compflag[80]=1;” is returned if a digit of a <VARNUM> is not a ‘.’, or a number, or the null character. This should be able to happen if it is a minus sign: such as ’32-23’.
+“p->compflag[82]=1;” is returned if a <VARNUM> has multiple decimal points in it.
+The issue with these last two points is that the function “numorcaps()” which they are called in is only used throughout the rest of the program to check for error messages. This means that although it is important that none of our test programs have raised these flags, that is because no valid program could do so (this has been checked). This oversight occurred through the simplified way that the completeness test flags were planted into the interpreter.
+
+As a summary of the flags that were not raised, only two were not raised but could have been. The rest were human errors. These are flags 44 and 57. I constructed a program “finalcompletenesstest.txt” which raises both and produces the following outputs for all flags.
+
+{0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,1,1,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,1,0,0,1,1,0,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,0,1,0,1,1,1,0,1,0,0,0,0,0,1,1}
+
+
+In conclusion, this testing came across one piece of code which was unnecessary (or at least had to be moved in order to ever be useful) via flag 78. This flag would have produced an error later down the line as we could have inserted numbers which had 2 or more decimal points into <VARNUM>, which is not allowed and would then not have had a graphical representation within our display. This is in fact the perfect result for this testing as one minor error shows the necessity of this type of test and its effectiveness (in a brute force kind of way), while the error remains small enough and simple enough to fix that it gives us confidence in the strength of the interpreter that has been created.
+

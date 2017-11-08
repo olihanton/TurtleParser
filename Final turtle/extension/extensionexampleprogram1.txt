@@ -1,0 +1,35 @@
+{
+TURTLE ON
+DO A FROM 1 TO 20 {
+SET C := 1 -1 A 1.5 * + + ;
+FD C
+RT 62
+}
+TURTLE OFF
+DO A FROM 21 TO 40 {
+SET C := 1 -1 A 1.5 * + + ;
+FD C
+RT 62
+}
+NODRAW ON
+TURTLE ON
+DO A FROM 41 TO 60 {
+SET C := 1 -1 A 1.5 * + + ;
+FD C
+RT 62
+}
+NODRAW OFF
+TURTLE OFF
+DO A FROM 61 TO 80 {
+SET C := 1 -1 A 1.5 * + + ;
+FD C
+RT 62
+}
+TURTLE ON
+DO A FROM 81 TO 100 {
+SET C := 1 -1 A 1.5 * + + ;
+FD C
+RT 62
+}
+
+}

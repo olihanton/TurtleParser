@@ -1,0 +1,7 @@
+{
+   DO K FROM 16 TO -16 {
+   FD 2
+   SET L := K 144 + ;
+   LT K
+}
+}
